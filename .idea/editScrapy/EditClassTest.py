@@ -10,3 +10,7 @@ print(code)
 fun = EditClass.EditClass()
 spiderHead = fun.addSpiderClass('doemSpider','sinaNew1',[],[])
 print(spiderHead)
+
+parseClass = EditClass.EditClass.addDefSelf('start_requests');
+spiderMain = parseClass;
+print (spiderMain)

@@ -10,6 +10,11 @@ class EditClass:
     @staticmethod
     def addDef(defName):
         return "\t" + "def " + defName + "():" + "\n"
+
+    #生成方法self
+    def addDefSelf(defName):
+        return "\t" + "def " + defName + "(self):" + "\n"
+
     #生成方法，带参数
     @staticmethod
     def addDefAndparam(defName, params):
@@ -43,6 +48,8 @@ class EditClass:
         classContext2 = "\t" + "name = '" + spiderName +"'\n"
         classContext3 = "\t" + "allowed_domains = [" + self.getArrayStr(allows) + "]\n"
         classContext4 = "\t" + "start_urls = [" + self.getArrayStr(startUrls) + "]\n"
-        print(classContext1+classContext2+classContext3+classContext4)
+        return classContext1+classContext2+classContext3+classContext4
+
+
 
 
