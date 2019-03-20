@@ -6,14 +6,22 @@ class EditClass:
     @staticmethod
     def addClass(className):
         return "class "+className+":" + "\n"
+
+    #生成类含入参
+    def addClassAndParams(self,className,params):
+        return "class " + className + "("+ params +"):" + "\n"
+
     #生成方法
     @staticmethod
     def addDef(defName):
         return "\t" + "def " + defName + "():" + "\n"
 
     #生成方法self
-    def addDefSelf(defName):
-        return "\t" + "def " + defName + "(self):" + "\n"
+    def addDefSelf(defName, params):
+        paramContext = ""
+        for param in params:
+            paramContext = paramContext + param + ","
+        return "\t" + "def " + defName + "(self,"+ paramContext[:-1] +"):" + "\n"
 
     #生成方法，带参数
     @staticmethod
@@ -21,8 +29,8 @@ class EditClass:
         paramContext = ""
         for param in params:
             paramContext = paramContext + param + ","
+        return "\t" + "def " + defName + "(" + paramContext[:-1] +"):" + "\n"
 
-        return "\t" + "def " + defName + "(" + paramContext[:-1] +"):" +"\n"
     #增加变量与缩进
     @staticmethod
     def addVar(bNum,param):
@@ -30,7 +38,7 @@ class EditClass:
         for i in range(1,bNum):
             blank = blank + '\t'
         param = blank + param
-        return param
+        return param + "\n"
 
     #获取数组str串
     def getArrayStr(self,params):

@@ -1,11 +1,36 @@
 #coding=utf-8
 from xml.dom.minidom import parse
 from editScrapy import EditClass
+from editScrapy import LogicClass
 #xmlStr = open('E:\scrapy.xml','r')
-doc=parse('F:\ideaSP\ScrapySpider\.idea\DOMparse\scrapy.xml')
+doc=parse('F:\ScrapyExtends\.idea\DOMparse\scrapy.xml')
 root=doc.documentElement
 
 editClass = EditClass.EditClass()
+logicClass = LogicClass.LoginClass()
+
+scrapyName = root.getAttribute("name")
+itemsClassName = scrapyName[:1].upper() + scrapyName[1:].lower() + "Item"
+
+#xml中获取item
+items=root.getElementsByTagName("items")[0]
+ItemArr = []
+for item in items.getElementsByTagName("item"):
+    ItemArr.append(item.childNodes[0].data)
+
+#-------item.py文件编写------#
+#item类头部编写
+itemsPyStr = editClass.addVar(0,"import scrapy")
+itemsPyStr = itemsPyStr + editClass.addClassAndParams(itemsClassName, "scrapy.Item")
+#item方法主体编写
+itemsPyStr = itemsPyStr + logicClass.itemsScrapyField(ItemArr)
+print(itemsPyStr)
+
+#写入文件
+#itemPyFile = open('F:\\autoScrapy\\demo1\\demo1\\items.py','w')
+#itemPyFile.write(itemsPyStr)
+#itemPyFile.close()
+
 
 #xml中获取spider
 spider = root.getElementsByTagName("spider")[0]
@@ -17,21 +42,42 @@ allowed_domain = []
 start_url.append(start_urls.childNodes[0].data)
 allowed_domain.append(allowed_domains.childNodes[0].data)
 
-#编写spider类初始化头部
-print (editClass.addSpiderClass("spiderTest", name.childNodes[0].data, allowed_domain, start_url))
-#编写parse解析方法
-print (editClass.addDefAndparam("parse",["self","response"]))
-#编写解析方法头部
-print (editClass.addVar(3,"item = Demo1Item()"))
-
+#获取解析方法内容
 parse = spider.getElementsByTagName('parse')[0]
-xpaths = parse.getElementsByTagName('xpath')
-for xpath in xpaths:
-    print (xpath.getAttribute("item"))
-    print (xpath.childNodes[0].data)
+##获取相应内容的xpath
+response = spider.getElementsByTagName('response')[0]
+responseXpath = response.getElementsByTagName('xpath')[0]
+responseXpathStr = responseXpath.childNodes[0].data
+#print(responseXpathStr)
+##获取每个item对应的xpath
+xpaths = parse.getElementsByTagName('xpaths')[0]
+xpathsArr = xpaths.getElementsByTagName('xpath')
+itemArr = []
+xpathArr = []
+for xpath in xpathsArr:
+    itemArr.append(xpath.getAttribute("item"))
+    xpathArr.append(xpath.childNodes[0].data)
 
-#xml中获取item
-items=root.getElementsByTagName("items")[0]
-for item in items.getElementsByTagName("item"):
-    print (item.childNodes[0].data)
+#-------spider.py文件编写------#
+#编写spider依赖
+spiderImportStr = editClass.addVar(0,"import scrapy")
+spiderImportStr = spiderImportStr + editClass.addVar(0,"from "+ scrapyName +".items import " + itemsClassName)
+#编写spider类初始化头部
+spiderImportStr = spiderImportStr + editClass.addSpiderClass("spiderTest", name.childNodes[0].data, allowed_domain, start_url)
+#编写parse解析方法
+spiderImportStr = spiderImportStr + editClass.addDefAndparam("parse",["self","response"])
+#编写解析方法头部
+spiderImportStr = spiderImportStr + editClass.addVar(3,"entity = response.xpath('"+ responseXpathStr +"')")
+spiderImportStr = spiderImportStr + editClass.addVar(3,"item = "+ itemsClassName +"()")
+#编写内容获取主体
+spiderImportStr = spiderImportStr + logicClass.itemsAndXpaths(2,itemArr,xpathArr)
+#编写内容打印
+spiderImportStr = spiderImportStr + editClass.addVar(3,"yield item")
+print(spiderImportStr)
+
+#写入文件
+#spiderFile = open('F:\\autoScrapy\\demo1\\demo1\\spiders\\spider.py','w')
+#spiderFile.write(spiderImportStr)
+#spiderFile.close()
+
 

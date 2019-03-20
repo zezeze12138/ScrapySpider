@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<scrapy>
+<scrapy name="demo1">
     <spider>
         <name>demoSpider</name>
         <allowed_domains>travel.sina.com.cn</allowed_domains>
         <start_urls>http://travel.sina.com.cn/domestic/news/2018-06-26/detail-ihencxtu2975652.shtml</start_urls>
         <parse>
-            <xpath item="title">//h1[@id='artibodyTitle']/text()</xpath>
-            <xpath item="content_html">//div[@class='article article_16']/p</xpath>
-            <xpath item="content_text">//div[@class='article article_16']/p/text()</xpath>
-            <xpath item="date">//span[@class='time-source']/text()</xpath>
+			<response>
+				<xpath>//div[@class='wrap-inner']</xpath>
+			</response>
+			<xpaths>
+				<xpath item="title">//h1[@id='artibodyTitle']/text()</xpath>
+				<xpath item="content_html">//div[@class='article article_16']/p</xpath>
+				<xpath item="content_text">//div[@class='article article_16']/p/text()</xpath>
+				<xpath item="date">//span[@class='time-source']/text()</xpath>
+			</xpaths>
         </parse>
     </spider>
     <items>
