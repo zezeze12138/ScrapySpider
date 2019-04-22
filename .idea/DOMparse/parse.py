@@ -3,7 +3,7 @@ from xml.dom.minidom import parse
 from editScrapy import EditClass
 from editScrapy import LogicClass
 #xmlStr = open('E:\scrapy.xml','r')
-doc=parse('F:\ScrapyExtends\.idea\DOMparse\scrapy.xml')
+doc=parse('F:\ScrapyExtends\.idea\DOMparse\scrapy2.xml')
 root=doc.documentElement
 
 editClass = EditClass.EditClass()
@@ -27,9 +27,9 @@ itemsPyStr = itemsPyStr + logicClass.itemsScrapyField(ItemArr)
 print(itemsPyStr)
 
 #写入文件
-#itemPyFile = open('F:\\autoScrapy\\demo1\\demo1\\items.py','w')
-#itemPyFile.write(itemsPyStr)
-#itemPyFile.close()
+itemPyFile = open('F:\\autoScrapy\\demo1\\demo1\\items.py','w')
+itemPyFile.write(itemsPyStr)
+itemPyFile.close()
 
 
 #xml中获取spider
@@ -76,8 +76,8 @@ spiderImportStr = spiderImportStr + editClass.addVar(3,"yield item")
 print(spiderImportStr)
 
 #写入文件
-#spiderFile = open('F:\\autoScrapy\\demo1\\demo1\\spiders\\spider.py','w')
-#spiderFile.write(spiderImportStr)
-#spiderFile.close()
+spiderFile = open('F:\\autoScrapy\\demo1\\demo1\\spiders\\spider.py','w')
+spiderFile.write(spiderImportStr)
+spiderFile.close()
 
 

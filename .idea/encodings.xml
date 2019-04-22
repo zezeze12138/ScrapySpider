@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://F:/DjangoFile/news/NewsManage/package.json" charset="UTF-8" />
+    <file url="file://F:/DjangoFile/news/NewsManage/src/App.vue" charset="UTF-8" />
+    <file url="file://F:/DjangoFile/news/NewsManage/src/components/HelloWorld.vue" charset="UTF-8" />
+    <file url="file://F:/DjangoFile/news/NewsManage/src/components/aside.vue" charset="UTF-8" />
+    <file url="file://F:/DjangoFile/news/NewsManage/src/main.js" charset="UTF-8" />
+    <file url="file://F:/DjangoFile/news/NewsManage/src/router/index.js" charset="UTF-8" />
+    <file url="file://F:/VueFile/Vue-project/package.json" charset="UTF-8" />
+    <file url="file://F:/VueFile/Vue-project/src/components/HelloWorld.vue" charset="UTF-8" />
+    <file url="file://F:/VueFile/Vue-project/src/components/NewContact.vue" charset="UTF-8" />
+    <file url="file://F:/VueFile/Vue-project/src/main.js" charset="UTF-8" />
+    <file url="file://F:/VueFile/Vue-project/src/router/index.js" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

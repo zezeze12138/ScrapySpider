@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scrapy name="demo1">
+    <spider>
+        <name>demoSpider</name>
+        <parse>
+			<response>
+                <request>https://feed.sina.com.cn/api/roll/get?pageid=207&amp;lid=1796&amp;num=30&amp;versionNumber=1.2.4&amp;encode=utf-8</request>
+                <page>page</page>
+			    <datas>
+                    <data>data</data>
+                </datas>
+                <url>wapurl</url>
+            </response>
+			<xpaths>
+                <xpath item="title">//h1[@id='art_tit_h1']/text()</xpath>
+                <xpath item="content_html">//section[@class='art_pic_card art_content']/p</xpath>
+                <xpath item="content_text">//section[@class='art_pic_card art_content']/p/text()</xpath>
+                <xpath item="date">//time[@class='art_time']/text()</xpath>
+			</xpaths>
+        </parse>
+    </spider>
+</scrapy>

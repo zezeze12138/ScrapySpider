@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 class LoginClass:
-    def ifelse(self, keyWord ,LayerNumber, judge):
+    def ifelse(self, LayerNumber, keyWord, judge):
         LayerStr = LoginClass.addIndent(LayerNumber)
-        return LayerStr + keyWord + " " + judge + ':'
+        return LayerStr + keyWord + " " + judge + ':' + "\n"
 
     def forLogin(self, LayerNumer, entity, entityLogin):
         LayerStr = LoginClass.addIndent(LayerNumer)
@@ -12,7 +12,7 @@ class LoginClass:
         LayerStr = LoginClass.addIndent(LayerNumber)
         itemsStr = ""
         for item,xpath in zip(items,xpaths):
-            itemsStr = itemsStr + LayerStr + 'item["' + item + '"] = entity.xpath("' + xpath + '").extract()' + "\n"
+            itemsStr = itemsStr + LayerStr + 'item["' + item + '"] = response.xpath("' + xpath + '").extract()' + "\n"
         return itemsStr
 
     #item.py字段代码编写

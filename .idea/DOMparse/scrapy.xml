@@ -6,7 +6,7 @@
         <start_urls>http://travel.sina.com.cn/domestic/news/2018-06-26/detail-ihencxtu2975652.shtml</start_urls>
         <parse>
 			<response>
-				<xpath>//div[@class='wrap-inner']</xpath>
+				<xpath>//div[@class="wrap-inner"]</xpath>
 			</response>
 			<xpaths>
 				<xpath item="title">//h1[@id='artibodyTitle']/text()</xpath>
